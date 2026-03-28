@@ -3,56 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Learning Hub</title>
+    <title>AI Personalized Learning Platform</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background-color: #f4f4f9; color: #333; }
-        header { background-color: #2c3e50; color: white; padding: 1rem; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.5rem; font-weight: bold; }
-        nav a { color: white; text-decoration: none; margin-left: 15px; }
-        .hero { text-align: center; padding: 50px 20px; background: white; }
-        .hero h1 { color: #2c3e50; }
-        .btn { background: #3498db; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 20px; }
-        .features { display: flex; justify-content: center; gap: 20px; padding: 40px; flex-wrap: wrap; }
-        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); width: 250px; text-align: center; }
-        footer { text-align: center; padding: 20px; background: #2c3e50; color: white; margin-top: auto; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; margin: 0; padding: 0; color: #333; }
+        header { background-color: #4a90e2; color: white; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .container { max-width: 800px; margin: 50px auto; padding: 20px; }
+        .card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        h1, h2 { color: #2c3e50; }
+        label { display: block; margin-top: 15px; font-weight: bold; }
+        input, select, textarea { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        button { background-color: #27ae60; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px; font-size: 1rem; width: 100%; }
+        button:hover { background-color: #219150; }
+        .result-box { background-color: #e8f8f5; border-left: 5px solid #27ae60; padding: 15px; margin-top: 20px; display: none; }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">Smart Learning Hub</div>
+        <div class="logo">SmartLearn AI</div>
         <nav>
-            <a href="#">Home</a>
-            <a href="#">Courses</a>
-            <a href="#">Dashboard</a>
-            <a href="#">Login</a>
+            <a href="#" style="color:white; text-decoration:none;">Dashboard</a>
+            <a href="#" style="color:white; text-decoration:none;">Profile</a>
         </nav>
     </header>
 
-    <div class="hero">
-        <h1>Enhance Your Learning Experience</h1>
-        <p>Access smart resources, track your progress, and learn efficiently.</p>
-        <a href="#" class="btn">Get Started</a>
+    <div class="container">
+        
+        <!-- Input Interface -->
+        <div class="card">
+            <h2>Student Profile Assessment</h2>
+            <p>Enter your details to receive a personalized learning path.</p>
+            
+            <form onsubmit="event.preventDefault(); generateRecommendations();">
+                <label>Grade/Class:</label>
+                <select id="grade">
+                    <option value="9">Class 9</option>
+                    <option value="10">Class 10</option>
+                    <option value="12">Class 12</option>
+                    <option value="College">College/University</option>
+                </select>
+
+                <label>Subject of Interest:</label>
+                <select id="subject">
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Physics">Physics</option>
+                    <option value="Python">Computer Science (Python)</option>
+                </select>
+
+                <label>Preferred Learning Style:</label>
+                <select id="style">
+                    <option value="video">Videos</option>
+                    <option value="text">Reading/Text</option>
+                    <option value="interactive">Interactive Quizzes</option>
+                </select>
+
+                <label>Current Goal:</label>
+                <input type="text" id="goal" placeholder="e.g., Board Exam, JEE Prep, Skill Upgrade">
+
+                <button type="submit">Analyze & Recommend</button>
+            </form>
+        </div>
+
+        <!-- Recommendation Output -->
+        <div id="results" class="result-box">
+            <h3>AI Recommendations:</h3>
+            <p><strong>Priority Path:</strong> <span id="rec-course">Analyzing...</span></p>
+            <p><strong>Format:</strong> <span id="rec-type">...</span></p>
+            <p><strong>Estimated Duration:</strong> <span id="rec-time">...</span> weeks</p>
+            <hr>
+            <label>Feedback on this recommendation:</label>
+            <input type="text" placeholder="e.g., Too easy, Too slow, Good pace">
+            <button onclick="alert('Feedback recorded. Adjusting model...')" style="background-color: #e67e22; margin-top:10px;">Submit Feedback</button>
+        </div>
+
     </div>
 
-    <div class="features">
-        <div class="card">
-            <h3>Smart Analytics</h3>
-            <p>Track your grades and performance in real-time.</p>
-        </div>
-        <div class="card">
-            <h3>Interactive Content</h3>
-            <p>Learn with videos, quizzes, and live sessions.</p>
-        </div>
-        <div class="card">
-            <h3>Resource Library</h3>
-            <p>Access notes and papers anytime, anywhere.</p>
-        </div>
-    </div>
+    <script>
+        function generateRecommendations() {
+            // Simulated Frontend Logic
+            const grade = document.getElementById('grade').value;
+            const subject = document.getElementById('subject').value;
+            const style = document.getElementById('style').value;
+            
+            let courseName, courseType, duration;
 
-    <footer>
-        <p>&copy; 2023 Smart Learning Hub Project. All rights reserved.</p>
-    </footer>
+            // Basic logic mimicking the Python backend
+            if (grade === "9" && subject === "Mathematics") {
+                courseName = "Class 9 Maths Foundation (Video Series)";
+                courseType = "Visual Guide + Videos";
+                duration = "6";
+            } else if (grade === "12" && subject === "Physics") {
+                courseName = "JEE Advanced Physics – Problem Solving";
+                courseType = "Practice Sets + Text";
+                duration = "8";
+            } else {
+                courseName = "General Python Basics";
+                courseType = "Interactive Coding";
+                duration = "4";
+            }
+
+            // Display Results
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('rec-course').innerText = courseName;
+            document.getElementById('rec-type').innerText = courseType;
+            document.getElementById('rec-time').innerText = duration;
+        }
+    </script>
 
 </body>
 </html>
